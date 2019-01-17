@@ -531,6 +531,10 @@ Note about requirements: some packages are needed for installing python. If the 
 
 ``apt-get install zlib1g-dev libjpeg-dev``
 
+You need also to properly install exiftool to run it,
+see https://www.sno.phy.queensu.ca/~phil/exiftool/install.html
+
+
 This package uses the following python dependencies (this list is not exhaustive): wand, python-magick, pillow, PyPDF2.
 
 Note: if you want to preview office files, ensure that LibreOffice is installed on your computer.
@@ -765,7 +769,7 @@ Developer’s Kit
 ---------------
 
 
-Installation (dev) :
+Installation on debian (dev) :
 --------------------
 
 
@@ -779,7 +783,7 @@ From scratch on a terminal :
      * if it's not already, activate it : `source myenv/bin/activate`. (`deactivate` to deactivate)
   - install dependencies :
 
-     * Exiftool - Follow instruction on the main website: https://sno.phy.queensu.ca/~phil/exiftool/
+     * Exiftool - Follow instruction on the main website: https://www.sno.phy.queensu.ca/~phil/exiftool/install.html
      * `apt-get install zlib1g-dev`
      * `apt-get install libjpeg-dev`
      * `apt-get install python3-pythonmagick`
@@ -821,6 +825,16 @@ Download the last AppImage from the official website https://www.scribus.net/dow
   mv /path/to/image/scribus-x.y.appimage /usr/local/bin/scribus
   chmod +x /usr/local/bin/scribus
 
+Windows Dependencies install
+----------------------------
+
+You need ImageMagick to use ImageMagick-Based Builder like wand, see
+wand documentation:
+http://docs.wand-py.org/en/0.5.0/guide/install.html#install-imagemagick-on-windows
+
+
+to deal with pdf with ImageMagickBased Builder, you need ghostscript:
+https://www.ghostscript.com/download/gsdnld.html
 
 
 Running Pytest :
