@@ -2,6 +2,7 @@
 
 
 import os
+import subprocess
 from subprocess import check_call, check_output
 from subprocess import DEVNULL
 from subprocess import STDOUT
@@ -80,28 +81,28 @@ class ImagePreviewBuilderIMConvert(ImagePreviewBuilder):
         tempfolder = tempfile.tempdir
         tmp_filename = '{}.png'.format(str(uuid.uuid4()))
         tmp_filepath = os.path.join(tempfolder, tmp_filename)
-        build_png_result_output = check_output(
+        build_png_result_output = subprocess.run(
             [
                 'convert',
                 file_path,
-                '-layers',
+                '-layerss',
                 'merge',
-                tmp_filepath
-            ],
-        )
+                tmp_filepath + "test"
+            ], stdout = subprocess.PIPE, stderr=subprocess.PIPE)
         try:
             build_png_result_code = check_call(
                 [
                     'convert',
                     file_path,
-                    '-layers',
+                    '-layerss',
                     'merge',
                     tmp_filepath+"test"
                 ],
                 stdout=DEVNULL, stderr=STDOUT
             )
         except Exception as exc:
-            print(build_png_result_output)
+            print('stdout:' + str(build_png_result_output.stdout))
+            print('stderr: ' + str(build_png_result_output.stderr))
             raise exc
 
         if build_png_result_code != 0:
