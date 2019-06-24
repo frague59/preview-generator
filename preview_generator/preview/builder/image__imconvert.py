@@ -87,7 +87,7 @@ class ImagePreviewBuilderIMConvert(ImagePreviewBuilder):
                 file_path,
                 '-layers',
                 'merge',
-                tmp_filepath + "test"
+                tmp_filepath
             ], stdout = subprocess.PIPE, stderr=subprocess.PIPE)
         try:
             build_png_result_code = check_call(
@@ -96,7 +96,7 @@ class ImagePreviewBuilderIMConvert(ImagePreviewBuilder):
                     file_path,
                     '-layers',
                     'merge',
-                    tmp_filepath+"test"
+                    tmp_filepath
                 ],
                 stdout=DEVNULL, stderr=STDOUT
             )
