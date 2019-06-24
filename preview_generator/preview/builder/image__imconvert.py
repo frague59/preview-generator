@@ -2,7 +2,7 @@
 
 
 import os
-from subprocess import check_call
+from subprocess import check_call, check_output
 from subprocess import DEVNULL
 from subprocess import STDOUT
 import tempfile
@@ -80,7 +80,7 @@ class ImagePreviewBuilderIMConvert(ImagePreviewBuilder):
         tempfolder = tempfile.tempdir
         tmp_filename = '{}.png'.format(str(uuid.uuid4()))
         tmp_filepath = os.path.join(tempfolder, tmp_filename)
-        build_png_result_code = check_call(
+        build_png_result_output = check_output(
             [
                 'convert',
                 file_path,
@@ -88,8 +88,21 @@ class ImagePreviewBuilderIMConvert(ImagePreviewBuilder):
                 'merge',
                 tmp_filepath
             ],
-            stdout=DEVNULL, stderr=STDOUT
         )
+        try:
+            build_png_result_code = check_call(
+                [
+                    'convert',
+                    file_path,
+                    '-layers',
+                    'merge',
+                    tmp_filepath+"test"
+                ],
+                stdout=DEVNULL, stderr=STDOUT
+            )
+        except Exception as exc:
+            print(build_png_result_output)
+            raise exc
 
         if build_png_result_code != 0:
             raise IntermediateFileBuildingFailed(
