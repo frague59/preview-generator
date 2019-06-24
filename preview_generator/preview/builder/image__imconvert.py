@@ -85,7 +85,7 @@ class ImagePreviewBuilderIMConvert(ImagePreviewBuilder):
             [
                 'convert',
                 file_path,
-                '-layerss',
+                '-layers',
                 'merge',
                 tmp_filepath + "test"
             ], stdout = subprocess.PIPE, stderr=subprocess.PIPE)
@@ -94,7 +94,7 @@ class ImagePreviewBuilderIMConvert(ImagePreviewBuilder):
                 [
                     'convert',
                     file_path,
-                    '-layerss',
+                    '-layers',
                     'merge',
                     tmp_filepath+"test"
                 ],
